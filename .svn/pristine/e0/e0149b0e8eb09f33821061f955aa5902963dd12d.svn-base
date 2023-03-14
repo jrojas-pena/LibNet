@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>LibNet</display-name>
+  <filter>
+    <display-name>RedirectFilter</display-name>
+    <filter-name>RedirectFilter</filter-name>
+    <filter-class>ca.on.senecac.prg556.common.RedirectFilter</filter-class>
+    <init-param>
+      <description></description>
+      <param-name>url</param-name>
+      <param-value>/showmaterialreservations.jspx</param-value>
+    </init-param>
+    <init-param>
+      <description></description>
+      <param-name>method</param-name>
+      <param-value>REDIRECT</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>RedirectFilter</filter-name>
+    <url-pattern>/</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+  </filter-mapping>
+</web-app>

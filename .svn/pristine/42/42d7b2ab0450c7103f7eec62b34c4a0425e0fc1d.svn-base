@@ -1,0 +1,58 @@
+package com.libnet.data;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import ca.senecacollege.prg556.limara.bean.AccountOwner;
+import ca.senecacollege.prg556.limara.bean.Material;
+import ca.senecacollege.prg556.limara.dao.AccountOwnerDAO;
+import ca.senecacollege.prg556.limara.dao.MaterialDAO;
+
+class AccountOwnerData implements AccountOwnerDAO {
+
+	public AccountOwnerData() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public AccountOwner validateAccountOwner(String username, String password)
+			throws SQLException {
+		if("test1".equals(username) && "123456".equals(password)){
+			return getAccountOwner(123);
+		}
+		else if("test2".equals(username) && "123456".equals(password)){
+			return getAccountOwner(456);
+		}
+		
+		else if("test3".equals(username) && "123456".equals(password)){
+			return getAccountOwner(789);
+			
+		}
+		else {
+			return null;
+		}
+		
+	}
+	
+	@Override
+	public AccountOwner getAccountOwner(int arg0) throws SQLException {
+		// TODO Auto-generated method stub
+		if(arg0 == 123) {
+			return  new AccountOwner(arg0, "Peter", "Parker");
+		}
+		
+		else if(arg0 == 456) {
+			return  new AccountOwner(arg0, "John", "Wilson");
+		}
+		
+		else if(arg0 == 789) {
+			return  new AccountOwner(arg0, "Kane", "Yang");
+		}
+		else {
+			return null;
+		}
+		
+	}
+	
+
+}

@@ -1,0 +1,51 @@
+//Author: Juan Rojas
+package com.libnet.data;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import ca.senecacollege.prg556.limara.bean.Material;
+import ca.senecacollege.prg556.limara.dao.MaterialDAO;
+import ca.senecacollege.prg556.limara.dao.MaterialReservationDAO;
+
+class MaterialReservationData implements MaterialReservationDAO{
+	
+	private MaterialData matData = new MaterialData(DataSourceFactory.getDataSource());
+	
+	public MaterialReservationData() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void cancelMaterialReservation(int accountOwnerId, String materialId)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Material getMaterialReservation(int accountOwnerId, String materialId)
+			throws SQLException {
+		// TODO Auto-generated method stub
+
+		
+		return matData.getMaterial(materialId);
+	}
+
+	@Override
+	public List<Material> getMaterialReservations(int accountOwnerId) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Material> materialList = new ArrayList<>();
+		materialList.add(matData.getMaterial("3487"));
+		materialList.add(matData.getMaterial("3488"));
+		return materialList;
+	}
+
+	@Override
+	public Material reserveMaterial(int accountOwnerId, String materialId) throws SQLException {
+		// TODO Auto-generated method stub
+		return matData.getMaterial(materialId);
+	}
+
+}

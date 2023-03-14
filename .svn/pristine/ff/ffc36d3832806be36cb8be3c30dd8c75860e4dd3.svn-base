@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Authors: Juan Rojas
+ -->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	version="2.0">
+	<jsp:directive.page language="java"
+		contentType="application/xhtml+xml; charset=UTF-8"
+		pageEncoding="UTF-8" />
+	<jsp:output omit-xml-declaration="no" doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.1//EN"
+		doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Reserve Materials</title>
+<link rel="stylesheet" type="text/css" href="ReserveMaterialsStyle.css" />
+<link rel="stylesheet" type="text/css" href="LimaraMenuStyle.css" />
+</head>
+<body>
+	<jsp:include page="limaramenu.jspx" />
+	<div class="container">
+
+		<form action="reservematerials.jspx" method="post">
+			<div class="search_bar">
+				<input class="Search-textbox" value="${materialTitle}" type="text" name="materialTitle" />
+				<select class="Search-dropdown-list" name="materialType">
+					<c:forTokens var="materialItem" items="All/All,Book/Book,Audio/Audio,Video/Video" delims=",">
+						<c:set var="materialvalue" value="${fn:split(materialItem, '/')[0]}" />
+						<c:set var="materialtext" value="${fn:split(materialItem, '/')[1]}" />
+						<c:choose>
+							<c:when test="${materiaType eq null and materialvalue eq 'All' or materialType eq materialvalue}"><option value="${materialvalue}" selected="selected">${materialtext}</option></c:when>
+							<c:otherwise><option value="${materialvalue}">${materialtext}</option></c:otherwise>
+						</c:choose>
+					</c:forTokens>
+				</select>
+				<input type="submit" name="search" value="Search" /> <c:if test="${invalidTitle}"><label
+					class="error-message">The title cannot be empty.</label></c:if>
+			</div>
+		</form>
+		<h3>
+		<c:if test="${not empty materialTitle}">
+			&quot;${materialTitle}&quot;,
+		</c:if>
+		<c:if test="${not empty materialType}">
+			&quot;${materialType}&quot;&amp;nbsp;&amp;nbsp;Results:
+		</c:if>
+		</h3>
+		<div class="result_area">
+		<c:choose>
+			
+			<c:when test="${isPost and empty materialsList and not empty materialsType}">
+				<h2>There is no materials available</h2>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="material" items="${materialsList}">
+					<div class="search-result">
+						<h4>${material.title}</h4>
+						<p>${material.type}</p>
+						<form action="reservematerials.jspx" method="post">
+							<div class="button">
+								<input type="submit" class="reserve_button" value="Reserve" name="reserve" /> 
+								<input type="hidden" class="id_number" name="id_number" value="${material.id}" />
+								<input type="hidden" class="materialTitle" name="materialTitle" value="${material.title}" />
+								<input type="hidden" class="materialType" name="materialType" value="${material.type}" />
+							</div>
+						</form>
+					</div>				
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		</div>
+	</div>
+</body>
+	</html>
+</jsp:root>

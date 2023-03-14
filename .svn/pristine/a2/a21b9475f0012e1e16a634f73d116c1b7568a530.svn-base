@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page language="java" />
+<head><link rel="stylesheet" type="text/css" href="limaramenu.css" /></head>
+<div class="menu_area">
+	<ul>
+    	<li><a class="btnmenu" href="reservematerials.jspx" >Reserve</a></li>
+    	<li><a class="btnmenu" href="showmaterialreservations.jspx">Show Reservations</a></li>
+    	<h2 id="title">LibNet</h2>
+    	<li id="login-info">Logged in as: John Doe<br />Number of reservations: 4</li>
+    	<li><a class="btnmenu" href="logout.jspx" id="logout">Logout</a></li>
+    </ul>
+</div>
+</jsp:root>
